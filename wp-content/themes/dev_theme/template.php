@@ -2,36 +2,30 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
+    <meta charset="utf-8">
     <title>Development Theme<?php if(isset($pageTitle)){ wp_title(); } ?></title>
-    <meta name="description" content="" />
-    <meta name="keywords" content="" />
-    <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="author" content="Thomas Bennett" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <link rel="stylesheet" type="text/css" href="<?php bloginfo('template_directory') ?>/style.css" />
-    <link rel="stylesheet" type="text/css" href="<?php bloginfo('template_directory') ?>/css/resets.css" />
-    <link rel="stylesheet" type="text/css" href="<?php bloginfo('template_directory') ?>/css/global.css" />
-    <link rel="stylesheet" type="text/css" href="<?php bloginfo('template_directory') ?>/css/fancybox.css" />
-    <link rel="stylesheet" type="text/css" href="<?php bloginfo('template_directory') ?>/css/main.css" />
 
     <?php if(is_singular()) wp_enqueue_script('comment-reply'); ?>
     <?php wp_enqueue_script('jquery'); ?>
 
-    <?php wp_head(); ?>
-
-    <?php include('head-files.php'); ?>
-	<script type="text/javascript" src="<?php bloginfo('template_directory') ?>/js/jquery.fancybox-1.3.4.pack.js"></script>
-	<script type="text/javascript" src="<?php bloginfo('template_directory'); ?>/js/init.js"></script>
-
-    <style>html, * html { padding: 0 !important } </style>
+    <?php get_header() ?>
+    <script src="<?php bloginfo('template_directory') ?>/js/libs/modernizr-1.7.min.js"></script>
 </head>
 
 <body>
     <div id="container">
-        <a href="/"><h1 id="logo"><?php bloginfo('name'); ?></h1></a>
-		<div id="search-bar" class="right">
-			<?php get_search_form(); ?>
-		</div>
+        <header>
+            <a href="/"><h1 id="logo"><?php bloginfo('name'); ?></h1></a>
+            <div id="search-bar" class="right">
+                <?php get_search_form(); ?>
+            </div>
+        </header>
 
         <div id="content">
             <?php echo $content ?>
@@ -47,9 +41,17 @@
         <div class="clear"></div>
     </div>
 
-    <div id="footer">
-        <?php include('footer.php') ?>
-    </div>
-    <?php wp_footer(); ?>
+    <footer>
+        <?php get_footer() ?>
+    </footer>
+
+    <script src="<?php bloginfo('template_directory') ?>/js/plugins.js"></script>
+    <script src="<?php bloginfo('template_directory') ?>/js/script.js"></script>
+    <?php include('head-files.php'); ?>
+
+    <!--[if lt IE 7 ]>
+        <script src="<?php bloginfo('template_directory') ?>/js/libs/dd_belatedpng.js"></script>
+        <script>DD_belatedPNG.fix("img, .png_bg"); // Fix any <img> or .png_bg bg-images. Also, please read goo.gl/mZiyb </script>
+    <![endif]-->
 </body>
 </html>

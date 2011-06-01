@@ -9,7 +9,7 @@ $blog_loop = null;
 $ft_image = null;
 
 //include a slideshow
-$slideshow = true;
+$slideshow = null;
 
 if(isset($pageTitle)):
     query_posts('pagename=' . $pageTitle);
