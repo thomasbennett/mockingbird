@@ -23,10 +23,10 @@
         <header>
             <a href="/"><h1 id="logo"><?php bloginfo('name'); ?></h1></a>
             <nav class="right">
-                <a id="what-we-do" class="nav-link" href="<?php bloginfo('template_directory') ?>/what-we-do/">What We Do</a>
-                <a id="about-us" class="nav-link" href="<?php bloginfo('template_directory') ?>/about-us/">About Us</a>
-                <a id="contact" class="nav-link" href="<?php bloginfo('template_directory') ?>/contact/">Contact</a>
-                <a id="latest-updates" class="nav-link" href="<?php bloginfo('template_directory') ?>/latest-updates/">Latest Updates</a>
+                <a id="what-we-do" class="nav-link" href="/what-we-do">What We Do</a>
+                <a id="about-us" class="nav-link" href="/about-us">About Us</a>
+                <a id="contact" class="nav-link" href="/contact">Contact</a>
+                <a id="latest-updates" class="nav-link" href="/latest-updates">Latest Updates</a>
             </nav>
         </header>
 
