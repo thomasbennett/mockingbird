@@ -73,11 +73,10 @@ html { overflow-y: scroll; }
 /* Accessible focus treatment: people.opera.com/patrickl/experiments/keyboard/test */
 a:hover, a:active { outline: none; }
 
-ul, ol { margin-left: 2em; }
 ol { list-style-type: decimal; }
 
 /* Remove margins for navigation lists */
-nav ul, nav li { margin: 0; list-style:none; list-style-image: none; }
+nav ul, nav li, footer ul, footer li { margin: 0; list-style:none; list-style-image: none; }
 
 small { font-size: 85%; }
 strong, th { font-weight: bold; }
@@ -122,7 +121,7 @@ input:invalid, textarea:invalid {
 /* These selection declarations have to be separate
    No text-shadow: twitter.com/miketaylr/status/12228805301
    Also: hot pink! */
-::-moz-selection{ background: #FF5E99; color:#fff; text-shadow: none; }
+::-moz-selection { background: #FF5E99; color:#fff; text-shadow: none; }
 ::selection { background:#FF5E99; color:#fff; text-shadow: none; }
 
 /* j.mp/webkit-tap-highlight-color */
@@ -144,7 +143,7 @@ body, select, input, textarea {
   /* #444 looks better than black: twitter.com/H_FJ/statuses/11800719859 */
   color: #444;
   /* Set your base font here, to apply evenly */
-  /* font-family: Georgia, serif;  */
+  font-family: Georgia, serif;
 }
 
 /* Headers (h1, h2, etc) have no default font-size or margin; define those yourself */
@@ -160,14 +159,36 @@ a:hover { color: #036; }
  * Author:  Thomas Bennett
  */
 
-body { background: url('images/background.jpg') repeat; }
+/* Template */
+body { background: #222 url('images/background.jpg') repeat; }
 
+h1#logo { background: url('images/logo.png') no-repeat; float: left; height: 87px; margin-top: 15px; overflow: hidden; text-indent: -9999px; width: 537px; }
 
+header { height: 120px; }
 
+nav { margin-top: 60px; }
+nav a.nav-link { display: block; float: left; height: 38px; margin-left: 15px; overflow: hidden; text-indent: -9999px; width: 33px; }
+nav a#what-we-do { background: url('images/what-we-do.png') no-repeat; }
+nav a#about-us { background: url('images/about-us.png') no-repeat; }
+nav a#contact { background: url('images/contact.png') no-repeat; }
+nav a#latest-updates { background: url('images/latest-news.png') no-repeat; }
 
+div#container { margin: 0 auto; width: 780px }
 
+footer { background: url('images/footer.png') repeat-x; height: 327px; width: 100%; }
+footer ul { float: left; margin-right: 40px }
+footer ul.last { margin-right: 0; }
+footer li a { color: #bbb; font-size: 14px; line-height: 1.4em; text-decoration: none; }
+footer li a.footer-link { color: #ddd; text-transform: uppercase; }
+a.book-them { background: url('images/book-them.png') no-repeat; display: block; float: right; height: 185px; overflow: hidden; text-indent: -9999px; width: 186px; }
 
+/* Home */
 
+div#slideshow { height: 252px; width: 780px; }
+div#slideshow section { position: relative; }
+div#slideshow section span { color: #4b595c; font-size: 2.6em; position: absolute; right: 90px; top: 56px; text-align: center; text-shadow: 2px 2px 2px #ddd; width: 300px; }
+
+section#twitter { background: url('images/twitter-bg.png') no-repeat; height: 58px; margin: 40px 0 10px; width: 422px; }
 
 
 
@@ -204,7 +225,9 @@ body { background: url('images/background.jpg') repeat; }
 /* Fix clearfix: blueprintcss.lighthouseapp.com/projects/15318/tickets/5-extra-margin-padding-bottom-of-page */
 .clearfix { zoom: 1; }
 
-
+.left { float: left; }
+.right { float: right; }
+.center { margin: 0 auto; width: 780px; }
 
 /**
  * Media queries for responsive design.

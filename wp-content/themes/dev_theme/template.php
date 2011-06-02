@@ -22,28 +22,45 @@
     <div id="container">
         <header>
             <a href="/"><h1 id="logo"><?php bloginfo('name'); ?></h1></a>
-            <div id="search-bar" class="right">
-                <?php get_search_form(); ?>
-            </div>
+            <nav class="right">
+                <a id="what-we-do" class="nav-link" href="<?php bloginfo('template_directory') ?>/what-we-do/">What We Do</a>
+                <a id="about-us" class="nav-link" href="<?php bloginfo('template_directory') ?>/about-us/">About Us</a>
+                <a id="contact" class="nav-link" href="<?php bloginfo('template_directory') ?>/contact/">Contact</a>
+                <a id="latest-updates" class="nav-link" href="<?php bloginfo('template_directory') ?>/latest-updates/">Latest Updates</a>
+            </nav>
         </header>
 
         <div id="content">
             <?php echo $content ?>
         </div>
 
-        <div id="sidebar">
+        <aside>
             <?php if(isset($pageTitle)): ?>
                 <?php get_sidebar($pageTitle); ?>
             <?php else: ?>
                 <?php get_sidebar(); ?>
             <?php endif; ?>
-        </div>
+        </aside>
         <div class="clear"></div>
     </div>
 
     <footer>
         <?php get_footer() ?>
     </footer>
+    
+    <?php if(is_home()): ?>
+        <script src="http://twitterjs.googlecode.com/svn/trunk/src/twitter.min.js"></script>
+        <script>
+            getTwitters('twitter', { 
+                id: 'MockingBMusic', 
+                count: 1, 
+                enableLinks: true, 
+                ignoreReplies: true, 
+                clearContents: true,
+                template: '"%text%" <a href="http://twitter.com/%user_screen_name%/statuses/%id_str%/">%time%</a>'
+            });
+        </script>
+    <?php endif; ?>        
 
     <script src="<?php bloginfo('template_directory') ?>/js/plugins.js"></script>
     <script src="<?php bloginfo('template_directory') ?>/js/script.js"></script>
