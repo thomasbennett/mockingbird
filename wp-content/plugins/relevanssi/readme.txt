@@ -3,8 +3,8 @@ Contributors: msaari
 Donate link: http://www.relevanssi.com/buy-premium/
 Tags: search, relevance, better search
 Requires at least: 2.5
-Tested up to: 3.1.2
-Stable tag: 2.8.2
+Tested up to: 3.1.3
+Stable tag: 2.9
 
 Relevanssi replaces the default search with a partial-match search that sorts results by relevance. It also indexes comments and shortcode content.
 
@@ -47,6 +47,7 @@ pricing includes support.
 * Improved spelling correction in "Did you mean?" suggestions.
 * Multisite support.
 * Search and index user profiles.
+* Search and index taxonomy term pages (categories, tags, custom taxonomies).
 * Assign weights to post types.
 * Adjust weights manually with a filter hook.
 * Highlighting search terms for visitors from external search engines.
@@ -121,10 +122,8 @@ Relevanssi doesn't work with plugins that rely on standard WP search. Those plug
 access the MySQL queries, for example. That won't do with Relevanssi. [Search Light](http://wordpress.org/extend/plugins/search-light/),
 for example, won't work with Relevanssi.
 
-[Dave's WordPress Live Search](http://wordpress.org/extend/plugins/daves-wordpress-live-search/) is
-an AJAX instant search plugin that works with Relevanssi. Versions up to 1.17 won't work, but
-the next version after that should, as long as you have at least Relevanssi 2.5. The Live Search
-will cause some strange search logs, but the search itself works.
+[ThreeWP Ajax Search](http://wordpress.org/extend/plugins/threewp-ajax-search/) is
+an AJAX instant search plugin that works with Relevanssi.
 
 Some plugins cause problems when indexing documents. These are generally plugins that use shortcodes
 to do something somewhat complicated. One such plugin is [MapPress Easy Google Maps](http://wordpress.org/extend/plugins/mappress-google-maps-for-wordpress/).
@@ -378,7 +377,17 @@ removing those words helps to make the index smaller and searching faster.
 
 == Changelog ==
 
+= 2.9 =
+* Fixed a bug that caused Cyrillic searches in the log to get corrupted.
+* Punctuation removal function is now triggered with a filter call and can thus be replaced.
+* Google Adsense caused double hits to the user search logs. That's now fixed thanks to Justin Klein.
+* User search log is available to user with `edit_post` capabilities (editor role). Thanks to John Blackbourn.
+* A proper database collation is now set. Thanks to John Blackbourn.
+* UI looks better. Thanks to John Blackbourn.
+* Lots of small fixes here and there.
+
 = 2.8.2 =
+* The `order` parameter was case sensitive. It isn't anymore.
 * WordPress didn't support searching for multiple categories with the `cat` query variable. There's now new `cats` which can take multiple categories.
 * Similar to `cats` vs `cat`, you can use `post_types` to restrict the search to multiple post types.
 

@@ -22,6 +22,7 @@
     <div id="container">
         <header>
             <a href="/"><h1 id="logo"><?php bloginfo('name'); ?></h1></a>
+            <div class="nav-hover"></div>
             <nav class="right">
                 <a id="what-we-do" class="nav-link" href="/what-we-do">What We Do</a>
                 <a id="about-us" class="nav-link" href="/about-us">About Us</a>
@@ -46,8 +47,9 @@
 
     <footer>
         <?php get_footer() ?>
+        <div class="city"></div>
     </footer>
-    
+
     <?php if(is_home()): ?>
         <script src="http://twitterjs.googlecode.com/svn/trunk/src/twitter.min.js"></script>
         <script>

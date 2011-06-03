@@ -164,27 +164,29 @@ body { background: #222 url('images/background.jpg') repeat; }
 
 h1#logo { background: url('images/logo.png') no-repeat; float: left; height: 87px; margin-top: 15px; overflow: hidden; text-indent: -9999px; width: 537px; }
 
-header { height: 120px; }
+header { height: 120px; position: relative; }
 
-nav { margin-top: 60px; }
-nav a.nav-link { display: block; float: left; height: 38px; margin-left: 15px; overflow: hidden; text-indent: -9999px; width: 33px; }
+nav { height: 30px; margin-top: 60px; overflow: hidden; }
+nav a.nav-link { display: block; float: left; height: 60px; margin-left: 15px; text-indent: -9999px; width: 33px; }
 nav a#what-we-do { background: url('images/what-we-do.png') no-repeat; }
-nav a#about-us { background: url('images/about-us.png') no-repeat; }
-nav a#contact { background: url('images/contact.png') no-repeat; }
+nav a#about-us { background: url('images/about-us.png') no-repeat; margin-top: 1px; }
+nav a#contact { background: url('images/contact.png') no-repeat;  }
 nav a#latest-updates { background: url('images/latest-news.png') no-repeat; }
+.nav-hover { color: #ddd; display: none; font-size: 16px; text-shadow: 1px 1px 1px #444; position: absolute; right: 40px; top: 20px;}
 
 div#container { margin: 0 auto; width: 780px }
 
-footer { background: url('images/footer.png') repeat-x; height: 327px; width: 100%; }
-footer ul { float: left; margin-right: 40px }
+footer { background: url('images/footer.png') repeat-x; height: 327px; position: relative; width: 100%; }
+footer ul { float: left; margin-right: 40px; margin-top: 60px;}
 footer ul.last { margin-right: 0; }
 footer li a { color: #bbb; font-size: 14px; line-height: 1.4em; text-decoration: none; }
 footer li a.footer-link { color: #ddd; text-transform: uppercase; }
-a.book-them { background: url('images/book-them.png') no-repeat; display: block; float: right; height: 185px; overflow: hidden; text-indent: -9999px; width: 186px; }
+a.book-them { background: url('images/book-them.png') no-repeat; display: block; float: right; height: 185px; margin-top: -60px; overflow: hidden; text-indent: -9999px; width: 186px; }
+.city { background: url('images/city.png') repeat-x; bottom: 0; height: 132px; position: absolute; width: 100%;}
 
 /* Home */
 
-div#slideshow { height: 252px; width: 780px; }
+div#slideshow { height: 252px; width: 780px; overflow: hidden;}
 div#slideshow section { position: relative; }
 div#slideshow section span { color: #4b595c; font-size: 2.6em; position: absolute; right: 90px; top: 56px; text-align: center; text-shadow: 2px 2px 2px #ddd; width: 300px; }
 
