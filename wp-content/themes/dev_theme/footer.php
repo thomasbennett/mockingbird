@@ -22,7 +22,7 @@
         <li><a class="footer-link" href="<?php bloginfo('template_directory') ?>/latest-news">Latest News</a></li>
         <li><a href="<?php bloginfo('template_directory') ?>/">Find us on Facebook</a></li>
         <li><a href="<?php bloginfo('template_directory') ?>/">Follow us on Twitter</a></li>
-        <li><a href="#">&copy;<?php echo date('Y') ?> Mockingbird Music</a></li>
+        <li><a href="javascript:void(0)">&copy;<?php echo date('Y') ?> Mockingbird Music</a></li>
     </ul>
 
     <a class="book-them" href="/contact">need musicians? Book them! (contact us for a free quote)</a>

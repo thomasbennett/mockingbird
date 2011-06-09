@@ -2,10 +2,8 @@
 /* Single */
 ob_start();
 
+$pageTitle = "Latest News";
 include('loop.php');
-
-get_sidebar();
-clear();
 
 if(isset($blog)):
     comments_template();

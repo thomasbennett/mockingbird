@@ -19,3 +19,10 @@ if (!function_exists('dynamic_sidebar') || !dynamic_sidebar('Sidebar')) :
 endif; 
 
 ?>
+
+<ul id="socials" class="inline">
+    <li><a href="#"><img src="<?php bloginfo('template_directory') ?>/images/twitter.png" alt="Twitter" /></a></li>
+    <li><a href="#"><img src="<?php bloginfo('template_directory') ?>/images/facebook.png" alt="Facebook" /></a></li>
+    <li><a href="#"><img src="<?php bloginfo('template_directory') ?>/images/youtube.png" alt="YouTube" /></a></li>
+    <li><a href="<?php bloginfo('rss2_url') ?>"><img src="<?php bloginfo('template_directory') ?>/images/rss.png" alt="RSS" /></a></li>
+</ul>

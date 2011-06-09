@@ -27,20 +27,19 @@
                 <a id="what-we-do" class="nav-link" href="/what-we-do">What We Do</a>
                 <a id="about-us" class="nav-link" href="/information">Information</a>
                 <a id="contact" class="nav-link" href="/contact">Contact</a>
-                <a id="latest-updates" class="nav-link" href="/latest-news">Latest Updates</a>
+                <a id="latest-updates" class="nav-link" href="/latest-news">Latest News</a>
             </nav>
         </header>
-
-        <div id="content">
-            <?php echo $content ?>
-        </div>
 
         <?php if(isset($pageTitle)): ?>
           <aside>
             <?php get_sidebar(); ?>
           </aside>
         <?php endif; ?>
-        <div class="clear"></div>
+
+        <div id="content">
+            <?php echo $content ?>
+        </div>
     </div>
 
     <footer>
@@ -49,6 +48,7 @@
     </footer>
 
     <?php if(is_home()): ?>
+        <style>#content { margin-bottom: 0 !important }</style>
         <script src="http://twitterjs.googlecode.com/svn/trunk/src/twitter.min.js"></script>
         <script>
             getTwitters('twitter', { 

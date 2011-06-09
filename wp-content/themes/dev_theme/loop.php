@@ -21,7 +21,7 @@
     <?php endif; ?>
 
     <div class="entry">  
-      <?php if($pageTitle == "Latest News"): ?>
+      <?php if($pageTitle == "Latest News" && !(is_singular())): ?>
         <?php the_excerpt(); ?>
       <?php else: ?>
         <?php the_content() ?>
