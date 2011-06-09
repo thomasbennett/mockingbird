@@ -232,10 +232,10 @@ class RCCWP_Menu
 		$panelsAndModulesFunctions = RCCWP_Menu::PrepareModulesPanelsMenuItems();
 
 		// Add top menu
-		add_menu_page(__('Magic Fields > Manage',$mf_domain), __('Magic Fields',$mf_domain), 10, 'MagicFieldsMenu', $panelsAndModulesFunctions->panelsMenuFunction, plugins_url('magic-fields/images/wand-hat.png'));
 
+		add_menu_page(__('Magic Fields > Manage',$mf_domain), __('Magic Fields',$mf_domain), 'edit_pages', 'MagicFieldsMenu', $panelsAndModulesFunctions->panelsMenuFunction, plugins_url(MF_PLUGIN_DIR.'/images/wand-hat.png'));
 		// Add Magic Fields submenus
-		add_submenu_page('MagicFieldsMenu', __('Write Panels',$mf_domain), __('Write Panels',$mf_domain), 10,'MagicFieldsMenu', $panelsAndModulesFunctions->panelsMenuFunction);		
+		add_submenu_page('MagicFieldsMenu', __('Write Panels',$mf_domain), __('Write Panels',$mf_domain), 'edit_pages','MagicFieldsMenu', $panelsAndModulesFunctions->panelsMenuFunction);		
 		
 	}
 
@@ -426,7 +426,7 @@ class RCCWP_Menu
 						FROM $wpdb->postmeta
 						WHERE post_id = '".$post->ID."' and meta_key = '_mf_write_panel_id'", ARRAY_A );
 		$currPage = basename($_SERVER['SCRIPT_NAME']);
-	
+
 		if(is_wp30()){
       if (count($result) > 0 && $currPage =="edit.php" ){
         $id = $result[0]['meta_value'];
@@ -434,9 +434,9 @@ class RCCWP_Menu
         if($_GET['post_type'] == 'page') $base = 'edit.php?post_type=page&';
   			$submenu_file = $base."filter-posts=1&custom-write-panel-id=$id";
       }elseif(@$_GET['custom-write-panel-id'] ){
-        $id = $result[0]['meta_value'];
+        //$id = $result[0]['meta_value'];
         $base = 'post-new.php?';
-        if($_GET['post_type'] == 'page') $base = 'post-new.php?post_type=page&';
+        if(isset($_GET['post_type']) && $_GET['post_type'] == 'page') $base = 'post-new.php?post_type=page&';
     		$submenu_file = $base."custom-write-panel-id=".$_GET['custom-write-panel-id'];
       }elseif (count($result) > 0 && $currPage =="post.php" ){
         $id = $result[0]['meta_value'];
@@ -460,11 +460,17 @@ class RCCWP_Menu
 		global $wpdb;
 		if (isset($_GET['filter-posts'])) {
 			$panel_id = $_GET['custom-write-panel-id'];
-			$where = $where . " AND 0 < (SELECT count($wpdb->postmeta.meta_value)
-					FROM $wpdb->postmeta
-					WHERE $wpdb->postmeta.post_id = $wpdb->posts.ID and $wpdb->postmeta.meta_key = '_mf_write_panel_id' and $wpdb->postmeta.meta_value = '$panel_id') ";
+				$where .= " and $wpdb->postmeta.meta_key = '_mf_write_panel_id' and $wpdb->postmeta.meta_value = '$panel_id' ";
 		}
 		return $where;
+	}
+	
+	function FilterPostsPagesListJoin($join){
+		global $wpdb;
+		if (isset($_GET['filter-posts'])) {
+		  $join = " JOIN $wpdb->postmeta ON $wpdb->postmeta.post_id = $wpdb->posts.ID ";
+	  }
+		return $join;
 	}
 	
 	function DetachWpWritePanelMenuItems()

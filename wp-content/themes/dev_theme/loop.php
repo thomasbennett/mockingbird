@@ -1,25 +1,35 @@
-        <?php $odd_or_even = 'odd'; ?> 
-        <?php while(have_posts()) : the_post(); ?>
-			<div class="post <?php if(!is_singular()) { echo $odd_or_even; } ?>">
-            	<h1>
-					 <a href="<?php the_permalink() ?>" 
-						rel="bookmark" 
-						title="Permanent Link to <?php the_title_attribute(); ?>">
-						<?php the_title(); ?>
-					</a>
-				</h1>
-				<div class="date">Published <?php echo the_date('F d, Y g:ia'); ?></div>
+<?php if($pageTitle == "Latest News"): ?>
+  <div id="blog-outer">
+    <div id="blog">
+<?php endif; ?>
+<?php while(have_posts()) : the_post(); ?>
+  <article>
+    <?php if($pageTitle == "Latest News"): ?>
+      <h1 <?php if($pageTitle =="Latest News"){ ?>class="blogh1"<?php } ?>>
+        <a href="<?php the_permalink() ?>" 
+           rel="bookmark" 
+           title="Permanent Link to <?php the_title_attribute(); ?>">
+           <?php the_title(); ?>
+        </a>
+      </h1>
+      <div class="blog-divider"></div>
+      <time>Published <?php echo the_date('F d, Y g:ia'); ?></time>
 
-            	<div class="divider"></div>
+      <div class="post-thumbnail">    
+        <?php the_post_thumbnail(); ?>  
+      </div>         
+    <?php endif; ?>
 
-            	<div class="post-thumbnail">    
-                	<?php the_post_thumbnail(); ?>  
-            	</div>         
-		        
-            	<div class="entry">  
-                    <?php $odd_or_even = ('odd' == $odd_or_even) ? 'even' : 'odd'; ?>
-                    <?php the_content('Read More &raquo;'); ?>
-            	</div>
-  			</div>
-        <?php $counter++ ?>
-        <?php endwhile; ?>     
+    <div class="entry">  
+      <?php if($pageTitle == "Latest News"): ?>
+        <?php the_excerpt(); ?>
+      <?php else: ?>
+        <?php the_content() ?>
+      <?php endif; ?>
+    </div>
+  </article>
+<?php endwhile; ?>
+<?php if($pageTitle == "Latest News"): ?>
+    </div>
+  </div>
+<?php endif; ?>

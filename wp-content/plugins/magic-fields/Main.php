@@ -4,7 +4,7 @@ Plugin Name: Magic-fields
 Plugin URI: http://magicfields.org
 Description: Create custom write panels and easily retrieve their values in your templates.
 Author: Hunk and Gnuget
-Version: 1.5.4
+Version: 1.5.5
 Author URI: http://magicfields.org
 */
 
@@ -113,6 +113,7 @@ if (is_admin()) {
 		add_action('admin_menu', array('RCCWP_Menu', 'AttachOptionsMenuItem'));
 		
 		add_filter('posts_where', array('RCCWP_Menu', 'FilterPostsPagesList'));
+		add_filter('posts_join_paged', array('RCCWP_Menu', 'FilterPostsPagesListJoin'));
 		add_action('admin_head', array('RCCWP_Menu', 'HighlightCustomPanel'));
 		
 		add_action('admin_head', 'mf_admin_style');
@@ -134,6 +135,39 @@ if (is_admin()) {
 		add_action('admin_notices', array('RCCWP_WritePostPage', 'FormError'));
 		
 	}
+
+        //add bottons visual editor
+        add_filter('mce_buttons', 'register_media_button');
+        function register_media_button($buttons) {
+          array_push($buttons, "separator","add_image","add_video","add_audio","add_media");
+          return $buttons;
+        }
+
+        function tmce_not_remove_p_and_br(){
+          ?>
+          <script type="text/javascript">
+            //<![CDATA[                                                                                     
+            jQuery('body').bind('afterPreWpautop', function(e, o){
+                o.data = o.unfiltered
+                  .replace(/caption\]\[caption/g, 'caption] [caption')
+                  .replace(/<object[\s\S]+?<\/object>/g, function(a) {
+                              return a.replace(/[\r\n]+/g, ' ');
+              });
+              }).bind('afterWpautop', function(e, o){
+                o.data = o.unfiltered;
+              });
+          //]]>                                                                                           
+          </script>
+          <?php
+        }
+        if( RCCWP_Application::InWritePostPanel() ){
+          require_once ('RCCWP_Options.php');
+          $dont_remove = RCCWP_Options::Get('dont-remove-tmce');
+          if($dont_remove){
+            add_action( 'admin_print_footer_scripts', 'tmce_not_remove_p_and_br', 50 );
+          }
+        }
+
 }
 
 require_once ('RCCWP_Options.php');
@@ -210,20 +244,6 @@ function cwp_add_pages_identifiers(){
 		<input type="hidden" name="rc-custom-write-panel-verify-key" id="rc-custom-write-panel-verify-key" value="$key" />
 		
 EOF;
-}
-
-
-if ( !function_exists('sys_get_temp_dir')) {
-  function sys_get_temp_dir() {
-	if (!empty($_ENV['TMP'])) { return realpath($_ENV['TMP']); }
-	if (!empty($_ENV['TMPDIR'])) { return realpath( $_ENV['TMPDIR']); }
-	if (!empty($_ENV['TEMP'])) { return realpath( $_ENV['TEMP']); }
-	$tempfile=tempnam(uniqid(rand(),TRUE),'');
-	if (file_exists($tempfile)) {
-		unlink($tempfile);
-		return realpath(dirname($tempfile)).DIRECTORY_SEPARATOR;
-	}
-  }
 }
 
 function mf_admin_style() {

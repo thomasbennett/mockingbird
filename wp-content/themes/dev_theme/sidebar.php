@@ -1,21 +1,21 @@
+<?php get_search_form() ?>
+
+<div class="divider"></div>
+
+<?php
+
+// set related posts for blog
+the_related();
+
+?>
+
+<div class="divider"></div>
+
 <?php 
 
 if (!function_exists('dynamic_sidebar') || !dynamic_sidebar('Sidebar')) :
     // If the Widget sidebar isn't hooked up stuff in here will show up
+    // This is being handled in the_related() function
 endif; 
-
-if(isset($blog_loop)): 
-    if(is_singular()) : 
-        // adds related posts to single blog post page
-        echo "<h2>Related Posts</h2>";
-        the_related();
-    else :
-        // shows most popular posts (on homepage);
-        echo "<h2>Popular Posts</h2>";
-        popular_posts();
-
-        if (function_exists('WPPP_show_popular_posts')) WPPP_show_popular_posts(); 
-    endif;
-endif;
 
 ?>

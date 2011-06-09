@@ -19,6 +19,7 @@ class RCCWP_CustomWritePanelPage
 		$customThemePage = NULL;
 		$showPost = true;
 		$customParentPage = NULL;
+		$customWritePanelCategoryIds = NULL;
 		if ($customWritePanel != null)
 		{
 			$customWritePanelName = $customWritePanel->name;
@@ -28,6 +29,12 @@ class RCCWP_CustomWritePanelPage
 			$customWritePanelType = $customWritePanel->type;
 			if ($customWritePanelType == 'page') $showPost = false;
 			$customWritePanelCategoryIds = RCCWP_CustomWritePanel::GetAssignedCategoryIds($customWritePanel->id);
+                        foreach($customWritePanelCategoryIds as $key => $c ){
+                          if((int)$c != 0){
+                            $tc = get_category($c);
+                            $customWritePanelCategoryIds[$key] = $tc->slug;
+                          }
+                        }
 			$customWritePanelStandardFieldIds = RCCWP_CustomWritePanel::GetStandardFields($customWritePanel->id);
 			$customWritePanelAllFieldIds = RCCWP_CustomWritePanel::Get($customWritePanel->id);
 			
@@ -36,6 +43,8 @@ class RCCWP_CustomWritePanelPage
 				$customParentPage = RCCWP_CustomWritePanel::GetParentPage($customWritePanel->name);
 			}
 			$defaultTagChecked = '';
+
+                        
 			?>
 			<input type="hidden" name="custom-write-panel-id" value="<?php echo $customWritePanel->id?>" />
 			<?php
@@ -88,7 +97,7 @@ class RCCWP_CustomWritePanelPage
 				
 				<?php
 				$cats = get_categories( "get=all" );
-				RCCWP_CustomWritePanelPage::PrintNestedCats( &$cats, 0, 0, &$customWritePanelCategoryIds );
+				RCCWP_CustomWritePanelPage::PrintNestedCats( $cats, 0, 0, $customWritePanelCategoryIds );
 				?>
 				
 			</td>
@@ -253,15 +262,15 @@ class RCCWP_CustomWritePanelPage
 	function PrintNestedCats( $cats, $parent = 0, $depth = 0, $customWritePanelCategoryIds ) {
 		foreach ($cats as $cat) : 
 			if( $cat->parent == $parent ) {
-				$checked = "";
-				if (@in_array($cat->cat_ID, $customWritePanelCategoryIds))
+                          $checked = "";
+				if (@in_array($cat->slug, $customWritePanelCategoryIds))
 				{
 					$checked = "checked=\"checked\"";
 				}
 				echo str_repeat('&nbsp;', $depth * 4);
-?>					<input type="checkbox" name="custom-write-panel-categories[]" value="<?php echo $cat->cat_ID?>" <?php echo $checked?> /> <?php echo $cat->cat_name ?> <br/>
+?>					<input type="checkbox" name="custom-write-panel-categories[]" value="<?php echo $cat->slug?>" <?php echo $checked?> /> <?php echo $cat->cat_name ?> <br/>
 <?php				
-			RCCWP_CustomWritePanelPage::PrintNestedCats( &$cats, $cat->term_id, $depth+1, &$customWritePanelCategoryIds );
+			RCCWP_CustomWritePanelPage::PrintNestedCats( $cats, $cat->term_id, $depth+1, $customWritePanelCategoryIds );
 			}
 		endforeach;
 	}				
@@ -382,7 +391,7 @@ class RCCWP_CustomWritePanelPage
 			</p>
 		</form>
     <br class="clear"/>
-    <?php if($_GET['saved_order'] == "true"):?>
+    <?php if(isset($_GET['save_order']) && $_GET['saved_order'] == "true"):?>
       <div id="message" class="updated">
         Saved Order.
       </div>
@@ -405,7 +414,7 @@ class RCCWP_CustomWritePanelPage
   		<thead>
 	  		<tr>
           <th width="5%"></th>
-	  			<th width="20%" scope="col">Group Name / Field <?php _e('Label', $mf_domain)?></th>
+	  			<th width="20%" scope="col"><?php _e('Label', $mf_domain)?></th>
 	  			<th width="35%" scope="col"><?php _e('Name (Order)', $mf_domain)?></th>
 	  			<th width="20%" scope="col"><?php _e('Type', $mf_domain)?></th>
 					<th width="20%" scope="col"><?php _e('Actions', $mf_domain)?></th>
@@ -420,7 +429,7 @@ class RCCWP_CustomWritePanelPage
 	    <?php endforeach;?>
 		</div>
 		<br />
-    <input type="submit" name="save_submit" id="save_order" />
+    <input type="submit" name="save_submit" value="<?php _e('Save Order',$mf_domain);?>" id="save_order" />
     </form>
 		<?php
 	}

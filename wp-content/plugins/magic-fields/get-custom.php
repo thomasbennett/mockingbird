@@ -139,7 +139,9 @@ function get ($fieldName, $groupIndex=1, $fieldIndex=1, $readyForEIP=true,$post_
 	
 	//filter for multine line
 	if($fieldType == $FIELD_TYPES['multiline_textbox']){
-		$results = apply_filters('the_content', $results);
+          if( !RCCWP_Options::Get('dont-remove-tmce') ){
+            $results = apply_filters('the_content', $results);
+          }
 	}
 	
 	if($fieldType == $FIELD_TYPES['image']){
@@ -205,10 +207,10 @@ function GetProcessedFieldValue($fieldValues, $fieldType, $fieldProperties=array
 				$fieldValue = date($fieldProperties['format'],strtotime($fieldValue)); 
 				break;
 		  case $FIELD_TYPES["Image (Upload Media)"]:
-		    	if ($fieldValue != ""){ 
-		    	  $data = wp_get_attachment_image_src($fieldValue,'original');
-		    	  $fieldValue = $data[0];
-		    	 }
+				if ($fieldValue != ""){ 
+					$data = wp_get_attachment_image_src($fieldValue,'original');
+					$fieldValue = $data[0];
+		    	}
   				break;
 		}
 		
@@ -325,14 +327,15 @@ function get_panel_name($safe=true, $post_id = NULL){
 }
 
 // Get Image. 
-function get_image ($fieldName, $groupIndex=1, $fieldIndex=1,$tag_img=1,$post_id=NULL,$override_params=NULL) {
+function get_image ($fieldName, $groupIndex=1, $fieldIndex=1,$tag_img=1,$post_id=NULL,$override_params=NULL, $wp_size='original') {
 	return create_image(array(
 		'fieldName' => $fieldName, 
 		'groupIndex' => $groupIndex, 
 		'fieldIndex' => $fieldIndex,
 		'param' => $override_params,
 		'post_id' => $post_id,
-		'tag_img' => (boolean) $tag_img
+		'tag_img' => (boolean) $tag_img,
+		'wp_size' => $wp_size
 	));
 }
 
@@ -378,7 +381,8 @@ function create_image($options)
 		'param' => NULL,
 		'attr' => NULL,
 		'post_id' => NULL,
-		'tag_img' => true
+		'tag_img' => true,
+		'wp_size' => 'original'
 	), (array) $options);
 	
 	// finally extract them into variables for this function
@@ -406,7 +410,7 @@ function create_image($options)
 	$fieldValue = $field['meta_value'];
 
   if($fieldType == 16){
-    $data = wp_get_attachment_image_src($fieldValue,'original');
+    $data = wp_get_attachment_image_src($fieldValue, $wp_size);
     $fieldValue = $data[0];
   }
 
@@ -933,5 +937,4 @@ function get_flat_group($name_group, $post_id = NULL) {
 function get_flat_group_with_prefix($name_group, $prefix, $post_id = NULL) {
   return get_group_with_options($name_group, array("prefix" => $prefix, "flatten" => TRUE), $post_id);
 }
-
 

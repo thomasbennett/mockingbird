@@ -25,9 +25,9 @@
             <div class="nav-hover"></div>
             <nav class="right">
                 <a id="what-we-do" class="nav-link" href="/what-we-do">What We Do</a>
-                <a id="about-us" class="nav-link" href="/about-us">About Us</a>
+                <a id="about-us" class="nav-link" href="/information">Information</a>
                 <a id="contact" class="nav-link" href="/contact">Contact</a>
-                <a id="latest-updates" class="nav-link" href="/latest-updates">Latest Updates</a>
+                <a id="latest-updates" class="nav-link" href="/latest-news">Latest Updates</a>
             </nav>
         </header>
 
@@ -35,13 +35,11 @@
             <?php echo $content ?>
         </div>
 
-        <aside>
-            <?php if(isset($pageTitle)): ?>
-                <?php get_sidebar($pageTitle); ?>
-            <?php else: ?>
-                <?php get_sidebar(); ?>
-            <?php endif; ?>
-        </aside>
+        <?php if(isset($pageTitle)): ?>
+          <aside>
+            <?php get_sidebar(); ?>
+          </aside>
+        <?php endif; ?>
         <div class="clear"></div>
     </div>
 
@@ -58,15 +56,16 @@
                 count: 1, 
                 enableLinks: true, 
                 ignoreReplies: true, 
-                clearContents: true,
-                template: '"%text%" <a href="http://twitter.com/%user_screen_name%/statuses/%id_str%/">%time%</a>'
+                clearContents: false,
+                template: '<span><a href="http://twitter.com/%user_screen_name%/statuses/%id_str%/">%text%</a></span><span class="twt-time">%time%</span>'
             });
         </script>
+        <script type="text/javascript" src="<?php bloginfo('template_directory'); ?>/js/cycle.js"></script>
+        <script type="text/javascript" src="<?php bloginfo('template_directory'); ?>/js/cycle-init.js"></script>
     <?php endif; ?>        
 
     <script src="<?php bloginfo('template_directory') ?>/js/plugins.js"></script>
     <script src="<?php bloginfo('template_directory') ?>/js/script.js"></script>
-    <?php include('head-files.php'); ?>
 
     <!--[if lt IE 7 ]>
         <script src="<?php bloginfo('template_directory') ?>/js/libs/dd_belatedpng.js"></script>

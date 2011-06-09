@@ -298,6 +298,12 @@ function smartTrim(string, maxLength) {
                 td.addClass("none");
                 th.addClass("none");
               } else {
+
+                if (tc == "related-type") {
+                  var href = document.location.href.split("?")[0];
+                  content += ' (&nbsp;<a href="' + href + '?action=edit&post=' + val + '" target="_blank" title="Edit related page/post in a new window">Edit Post</a>&nbsp;)';
+                }
+
                 if (!def) { el.removeClass("empty"); } 
               }
             
@@ -1195,7 +1201,7 @@ add_editor_text = function(context){
   }
   
   if (doInit) {
-    tinyMCE.init(options);
+    //tinyMCE.init(options);
   
   	jQuery(".Multiline_Textbox :input[type='textarea'].pre_editor", context).each( function(inputField){
       var editor_text = jQuery(this).attr('id');

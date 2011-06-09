@@ -74,6 +74,7 @@ html { overflow-y: scroll; }
 a:hover, a:active { outline: none; }
 
 ol { list-style-type: decimal; }
+ul { list-style-type: square; }
 
 /* Remove margins for navigation lists */
 nav ul, nav li, footer ul, footer li { margin: 0; list-style:none; list-style-image: none; }
@@ -139,19 +140,20 @@ button {  width: auto; overflow: visible; }
  * You might tweak these..
  */
 
-body, select, input, textarea {
-  /* #444 looks better than black: twitter.com/H_FJ/statuses/11800719859 */
-  color: #444;
-  /* Set your base font here, to apply evenly */
-  font-family: Georgia, serif;
-}
+select, input, textarea  { color: #999; }
 
 /* Headers (h1, h2, etc) have no default font-size or margin; define those yourself */
-h1, h2, h3, h4, h5, h6 { font-weight: bold; }
+h1, h2, h3, h4, h5, h6 { font-weight: normal; }
+h1 { color: #ddd; font-family: 'Helvetica Neue', 'Arial', Helvetica, sans-serif; font-size: 2em; text-transform: uppercase; text-shadow: 1px 1px 1px #333; }
+h1 a { color: inherit; text-decoration: inherit; }
+h2 { font-size: 2em; }
+h3 { font-size: 1.8em; }
 
 a, a:active, a:visited { color: #607890; }
 a:hover { color: #036; }
 
+p { font-size: 17px; line-height: 1.5em; margin-bottom: 15px; }
+ul li { font-size: 17px; line-height: 1em; margin-left: 1.2em;}
 
 /**
  * Primary styles
@@ -160,7 +162,7 @@ a:hover { color: #036; }
  */
 
 /* Template */
-body { background: #222 url('images/background.jpg') repeat; }
+body { background: #222 url('images/background.jpg') repeat; color: #ddd; font-family: 'Garamond', Georgia, serif; }
 
 h1#logo { background: url('images/logo.png') no-repeat; float: left; height: 87px; margin-top: 15px; overflow: hidden; text-indent: -9999px; width: 537px; }
 
@@ -174,29 +176,44 @@ nav a#contact { background: url('images/contact.png') no-repeat;  }
 nav a#latest-updates { background: url('images/latest-news.png') no-repeat; }
 .nav-hover { color: #ddd; display: none; font-size: 16px; text-shadow: 1px 1px 1px #444; position: absolute; right: 40px; top: 20px;}
 
+form#global-search input { float: left; font-style: italic; }
+input#search { background: url('images/search.png') no-repeat; border: 0; height: 35px; padding-left: 10px; padding-right: 33px; margin-bottom: 30px; width: 166px; }
+input.search-submit { background: none; border: 0; font-size: 0; height: 30px; margin-left: -46px; text-indent: -9999px; width: 40px; }
+
 div#container { margin: 0 auto; width: 780px }
 
-footer { background: url('images/footer.png') repeat-x; height: 327px; position: relative; width: 100%; }
+footer { background: url('images/footer.png') repeat-x; clear: both; height: 327px; position: relative; width: 100%; }
 footer ul { float: left; margin-right: 40px; margin-top: 60px;}
 footer ul.last { margin-right: 0; }
-footer li a { color: #bbb; font-size: 14px; line-height: 1.4em; text-decoration: none; }
+footer ul li { margin-left: 0; }
+footer li a { color: #bbb; font-size: 15px; line-height: 1.4em; text-decoration: none; }
 footer li a.footer-link { color: #ddd; text-transform: uppercase; }
-a.book-them { background: url('images/book-them.png') no-repeat; display: block; float: right; height: 185px; margin-top: -60px; overflow: hidden; text-indent: -9999px; width: 186px; }
+a.book-them { background: url('images/book-them.png') no-repeat; display: block; height: 185px; margin-top: -60px; position: absolute; overflow: hidden; text-indent: -9999px; right: 0; width: 186px; }
 .city { background: url('images/city.png') repeat-x; bottom: 0; height: 132px; position: absolute; width: 100%;}
 
 /* Home */
 
 div#slideshow { height: 252px; width: 780px; overflow: hidden;}
 div#slideshow section { position: relative; }
-div#slideshow section span { color: #4b595c; font-size: 2.6em; position: absolute; right: 90px; top: 56px; text-align: center; text-shadow: 2px 2px 2px #ddd; width: 300px; }
+div#slideshow section h2 p { color: #4b595c; font-size: 34px; position: absolute; right: 90px; top: 56px; text-align: center; text-shadow: 2px 2px 2px #ddd; width: 300px; }
 
-section#twitter { background: url('images/twitter-bg.png') no-repeat; height: 58px; margin: 40px 0 10px; width: 422px; }
+section#twitter { background: url('images/twitter-bg.png') no-repeat; height: 58px; margin: 40px 0 20px; position: relative; width: 422px; }
+section#twitter img { margin: 10px 0 0 10px }
+section#twitter span { float: left; margin-left: 10px; margin-top: 10px; width: 365px; }
+section#twitter li { list-style: none; }
+section#twitter span a { color: #fff; font-size: 15px; text-decoration: none; }
+section#twitter span.twt-time { color: #86b6c2; font-style: italic; float: right !important; font-size: 14px; position: absolute; right: 15px; bottom: 10px; width: auto; }
 
-
-
-
-
-
+/* Latest News */
+#blog-outer { background: url('images/blog-bg2.png') repeat; float: right; margin-bottom: 100px; padding: 10px; width: 530px;}
+#blog { background: url('images/blogbg.jpg') repeat; padding: 20px; }
+#blog p { color: #ccc; line-height: 1.4em; }
+.read-more { background: url('images/read-more.png') no-repeat 7px 12px; color: #5cadbb; display: block; font-size: .9em; height: 16px; margin-top: 15px;  width: 451px; text-decoration: none; text-align: center; }
+div.divider { background: url('images/double-bar.png') repeat-x; clear: both; height: 4px; margin: 20px 0; }
+div.blog-divider { background: url('images/blog-divider.png') repeat-x; clear: both; height: 4px; margin: 10px 0;}
+time { color: #333; display: block; font-family: 'Helvetica Neue', 'Arial', Helvetica, sans-serif; font-size: .9em; margin-bottom: 10px; text-transform: uppercase; }
+aside { float: left; width: 205px; }
+.post-thumbnail img { border: 2px solid #999; height: 235px; width: 448px; }
 
 
 /**
@@ -229,7 +246,9 @@ section#twitter { background: url('images/twitter-bg.png') no-repeat; height: 58
 
 .left { float: left; }
 .right { float: right; }
-.center { margin: 0 auto; width: 780px; }
+.center { margin: 0 auto; position: relative; width: 780px; }
+.alignleft { border: 2px solid #999; float: left; margin: 0 15px 15px 0; }
+.alignright { border: 2px solid #999; float: right; margin: 0 0 15px 15px; }
 
 /**
  * Media queries for responsive design.

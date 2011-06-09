@@ -5,6 +5,7 @@
 ?>
 
 <?php ob_start(); ?>
+<?php $pageTitle = "Latest News"; ?>
 
 <?php query_posts('category_name=news') ?>
 <?php include('loop.php') ?>
