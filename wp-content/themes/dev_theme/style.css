@@ -204,14 +204,15 @@ footer ul.last { margin-right: 0; }
 footer ul li { margin-left: 0; }
 footer li a { color: #bbb; font-size: 15px; line-height: 1.4em; text-decoration: none; }
 footer li a.footer-link { color: #ddd; text-transform: uppercase; }
-a.book-them { background: url('images/book-them.png') no-repeat; display: block; height: 185px; margin-top: -60px; position: absolute; overflow: hidden; text-indent: -9999px; right: 0; width: 186px; }
+a.book-them { background: url('images/book-them.png') no-repeat left top; display: block; height: 182px; margin-top: -60px; position: absolute; overflow: hidden; text-indent: -9999px; right: 0; width: 186px; }
+a.book-them:hover { background-position: left bottom; }
 .city { background: url('images/city.png') repeat-x; bottom: 0; height: 132px; position: absolute; width: 100%;}
 
 /* Home */
 
-div#slideshow { height: 252px; width: 780px; overflow: hidden;}
+div#slideshow { height: 264px; width: 780px; overflow: hidden;}
 div#slideshow section { position: relative; }
-div#slideshow section h2 p { color: #4b595c; font-size: 34px; position: absolute; right: 90px; top: 56px; text-align: center; text-shadow: 2px 2px 2px #ddd; width: 300px; }
+div#slideshow section h2 p { color: #4b595c; font-family: Georgia, sans-serif; font-size: 34px; position: absolute; right: 90px; top: 56px; text-align: center; text-shadow: 2px 2px 2px #ddd; width: 300px; }
 
 section#twitter { background: url('images/twitter-bg.png') no-repeat; height: 58px; margin: 40px 0 20px; position: relative; width: 422px; }
 section#twitter img { margin: 10px 0 0 10px }
@@ -237,6 +238,15 @@ p img { margin-top: 15px !important; /* compensates for WP automatic P tags on i
 .wpcf7-form input { padding: 5px; width: 200px; }
 textarea { height: 80px; }
 .wpcf7-submit { background: #333; border: 1px solid #666; color: #ddd; font-family: 'CherylHand', sans-serif;  font-size: 25px; padding: 0px !important; width: 80px !important; }
+
+/* Information */
+.hover-title { height: 240px; position: relative; width: 340px; }
+.hover-text { background: #000; height: 245px; opacity: 0;  left: -5px; position: absolute; top: 15px; width: 350px; }
+.hover-text:hover { opacity: .7; }
+.hover-text span { display: block; font-family: "CherylHand", "Apple Chancery", "Zapf Chancery", "Monotype Corsiva", Georgia, cursive; font-size: 4em; margin-top: 90px; text-align: center; }
+#weddings-events a { color: #ddd; text-decoration: none; }
+
+
 
 /**
  * Non-semantic helper classes: please define your styles before this section.

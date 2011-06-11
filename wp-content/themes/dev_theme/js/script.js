@@ -1,5 +1,5 @@
 /* Author:  Thomas Bennett */
-jQuery(document).ready(function($){
+jQuery(function($){
     $('a.nav-link').hover(function(){
         $navHover = $('div.nav-hover');
         var linkHeight = $(this).height();
@@ -18,5 +18,9 @@ jQuery(document).ready(function($){
     }, function() {
         $(this).animate({'margin-top':'0'}, 300);
         $navHover.fadeOut(100);
+    });
+
+    $(window).load(function(){
+        $('div#weddings-events').find('div.hover-title:first').css({'float':'right'});
     });
 });
