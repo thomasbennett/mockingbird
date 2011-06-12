@@ -211,9 +211,11 @@ a.book-them:hover { background-position: left bottom; }
 /* Home */
 
 div#slideshow { height: 264px; width: 780px; overflow: hidden;}
-div#slideshow section { position: relative; }
+div#slideshow section { position: relative; -webkit-border-radius: 10px; -moz-border-radius: 10px; border-radius: 10px; height: 264px; width: 780px; }
 div#slideshow section h2 p { color: #4b595c; font-family: Georgia, sans-serif; font-size: 34px; position: absolute; right: 90px; top: 56px; text-align: center; text-shadow: 2px 2px 2px #ddd; width: 300px; }
-
+section.one { background: url('images/slide1.jpg') no-repeat; }
+section.two { background: url('images/slide2.jpg') no-repeat; }
+section.three { background: url('images/slide3.jpg') no-repeat; }
 section#twitter { background: url('images/twitter-bg.png') no-repeat; height: 58px; margin: 40px 0 20px; position: relative; width: 422px; }
 section#twitter img { margin: 10px 0 0 10px }
 section#twitter span { float: left; margin-left: 10px; margin-top: 10px; width: 365px; }
