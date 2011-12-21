@@ -13,6 +13,7 @@ ob_start();
             <p class="right"><?php echo $wp_query->found_posts . ' <small>hits were found.</small>'; ?><p>
         </div>
         <div class="divider"></div>
+        <?php query_posts('posts_per_page=-1') ?>
         <?php include('loop.php'); ?>
     <?php else : ?>
 				<div class="post no-results not-found">

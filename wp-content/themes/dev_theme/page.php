@@ -1,8 +1,3 @@
-<?php
-/*
-* Template Name: Magic Page
-*/
-?>
 <?php ob_start(); ?>
 
 <?php include('loop.php') ?>

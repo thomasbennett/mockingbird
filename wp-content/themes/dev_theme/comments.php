@@ -4,89 +4,75 @@
  * @subpackage TGB_Development_Theme
  */
 
-if (!empty($_SERVER['SCRIPT_FILENAME']) && 'comments.php' == basename($_SERVER['SCRIPT_FILENAME']))
-    die ('Please do not load this page directly. Thanks!');
+if(!empty($_SERVER['SCRIPT_FILENAME']) && 'comments.php' == basename($_SERVER['SCRIPT_FILENAME'])):
+  die('You can not access this page directly!');
+endif;
 
-if ( post_password_required() ) { ?>
-    <p class="nocomments">This post is password protected. Enter the password to view comments.</p>
-<?php
-    return;
-    }
+function alternate_rows($i){    
+  if($i % 2) {        
+    echo ' class="alt-comment"';    
+  } else {        
+    echo '';    
+  }  
+} 
 ?>
 
-<?php if ( have_comments() ) : ?>
-	<h3 id="comments"><?php comments_number('No Comments', 'One Comment', '% Comments' );?></h3>
-	<ol class="commentlist">
-        <?php wp_list_comments('avatar_size=60'); ?>
-	</ol>
- <?php else : ?>
-	<?php if ( comments_open() ) : ?>
-		<!-- If comments are open, but there are no comments. -->
+<?php if(!empty($post->post_password)) : ?>
+  <?php if($_COOKIE['wp-postpass_' . COOKIEHASH] != $post->post_password) : ?>
+    <p>This post is password protected. Enter the password to view comments.</p>
+  <?php endif; ?>
+<?php endif; ?>
 
-	 <?php else : // comments are closed ?>
-		<!-- If comments are closed. -->
-		<p class="nocomments">Comments are closed.</p>
+<?php if($comments) : ?>
+  <ul id="comments">
+    <p class="comment-total"><?php comments_number('No comments', 'One comment', '% comments'); ?> </p> 
+    <?php foreach($comments as $comment) : ?>
+    <?php $i++; ?>
+    <li<?php alternate_rows($i); ?> id="comment-<?php comment_ID(); ?>">
+      <?php if ($comment->comment_approved == '0') : ?>
+        <p>Your comment is awaiting approval.</p>
+      <?php endif; ?>
+      <p class="meta">
+        <span class="comment-avatar left"><?php echo get_avatar(get_comment_author_email(), $size, $default_avatar); ?></span>
+        <span class="comment-text"><?php comment_text(); ?></span>
+        <span class="comment-meta"><?php comment_type(); ?> by <?php comment_author_link(); ?> on <?php comment_date(); ?> at <?php comment_time(); ?></span>
+      </p>
+    </li>
+  <?php endforeach; ?>
+</ul>
+<?php else : ?>
+	<p>No comments yet.</p>
+<?php endif; ?>
+
+<?php if(comments_open()) : ?>
+	<?php if(get_option('comment_registration') && !$user_ID) : ?>
+		<p>You must be <a href="<?php echo get_option('siteurl'); ?>/wp-login.php?redirect_to=<?php echo urlencode(get_permalink()); ?>">logged in</a> to post a comment.</p><?php else : ?>
+		<form action="<?php echo get_option('siteurl'); ?>/wp-comments-post.php" method="post" id="commentform">
+			<?php if($user_ID) : ?>
+				<p>Logged in as <a href="<?php echo get_option('siteurl'); ?>/wp-admin/profile.php"><?php echo $user_identity; ?></a>. <a href="<?php echo get_option('siteurl'); ?>/wp-login.php?action=logout" title="Log out of this account">Log out &raquo;</a></p>
+			<?php else : ?>
+				<p>
+          <label for="author"><small>Name: <?php if($req) echo "*"; ?></small></label>
+          <input type="text" name="author" id="author" value="<?php echo $comment_author; ?>" size="22" tabindex="1" />
+				</p>
+				<p>
+          <label for="email"><small>Email: <?php if($req) echo "*"; ?></small></label>
+          <input type="text" name="email" id="email" value="<?php echo $comment_author_email; ?>" size="22" tabindex="2" />
+        </p>
+				<p>
+				<label for="url"><small>Website:</small></label>
+        <input type="text" name="url" id="url" value="<?php echo $comment_author_url; ?>" size="22" tabindex="3" />
+        </p>
+			<?php endif; ?>
+			<p>
+        <label class="left" for="comment"><small>Comment:</small></label>
+        <textarea name="comment" id="comment" cols="50" rows="5" tabindex="4"></textarea>
+      </p>
+			<p><input name="submit" type="submit" id="submit" class="comment-submit" tabindex="5" value="Submit Comment" />
+			<input type="hidden" name="comment_post_ID" value="<?php echo $id; ?>" /></p>
+			<?php do_action('comment_form', $post->ID); ?>
+		</form>
 	<?php endif; ?>
-<?php endif; ?>
-
-<?php /* BEGIN TRACKBACK/PINGBACK CODE */ ?>
-<?php global $trackbacks; ?>
-<?php if ($trackbacks) : ?>
-    <?php $comments = $trackbacks; ?>
-    <div id="pingback-trackback">
-    <h3 id="trackbacks"><?php echo sizeof($trackbacks); ?> Trackbacks/Pingbacks</h3>
-        <ol class="pings">
-     
-        <?php foreach ($comments as $comment) : ?>
-        <!-- Start Your trackback Code -->
-            <li <?php echo $oddcomment; ?>id="comment-<?php comment_ID() ?>">
-                <cite><?php comment_author_link() ?></cite>
-                <?php if ($comment->comment_approved == '0') : ?>
-                <em>Your comment is awaiting moderation.</em>
-                <?php endif; ?>  
-            </li>
-        <!-- End Your trackback Code -->
-        <?php
-            /* Changes every other comment to a different class */
-            $oddcomment = ( empty( $oddcomment ) ) ? 'class="alt" ' : '';
-        ?>
-     
-        <?php endforeach; /* end for each comment */ ?>
-     
-        </ol>
-    </div>
-<?php endif; ?>
-<?php /* END TRACKBACK/PINGBACK CODE */ ?>
-
-<?php if ( comments_open() ) : ?>
-    <div id="respond">
-        <h3><?php comment_form_title( 'Leave a Reply', 'Leave a Reply to %s' ); ?></h3>
-
-        <div class="cancel-comment-reply">
-            <small><?php cancel_comment_reply_link(); ?></small>
-        </div>
-
-        <?php if ( get_option('comment_registration') && !is_user_logged_in() ) : ?>
-            <p>You must be <a href="<?php echo wp_login_url( get_permalink() ); ?>">logged in</a> to post a comment.</p>
-        <?php else : ?>
-            <form action="<?php echo get_option('siteurl'); ?>/wp-comments-post.php" method="post" id="commentform">
-                <?php if ( is_user_logged_in() ) : ?>
-                    <p>Logged in as <a href="<?php echo get_option('siteurl'); ?>/wp-admin/profile.php"><?php echo $user_identity; ?></a>. <a href="<?php echo wp_logout_url(get_permalink()); ?>" title="Log out of this account">Log out &raquo;</a></p>
-                <?php else : ?>
-                    <p><label for="author"><small>Name <?php if ($req) echo "(required)"; ?></small></label><br/><input type="text" name="author" id="author" value="<?php echo esc_attr($comment_author); ?>" size="22" tabindex="1"/></p>
-                    <p><label for="email"><small>Mail (will not be published) <?php if ($req) echo "(required)"; ?></small></label><br/><input type="text" name="email" id="email" value="<?php echo esc_attr($comment_author_email); ?>" size="22" tabindex="2" /></p>
-                    <p><label for="url"><small>Website</small></label><br/><input type="text" name="url" id="url" value="<?php echo esc_attr($comment_author_url); ?>" size="22" tabindex="3" /></p>
-                <?php endif; ?>
-
-                <?php echo allowed_tags(); ?>
-
-                <p><textarea name="comment" id="comment" cols="70" rows="10" tabindex="4"></textarea></p>
-                <p>
-                    <input name="submit" type="submit" id="submit" tabindex="5" value="submit it" />
-                    <?php comment_id_fields(); ?>
-                </p>
-                <?php do_action('comment_form', $post->ID); ?>
-            </form>
-        <?php endif; ?>
-    </div>
+<?php else : ?>
+	<p>The comments are closed.</p>
 <?php endif; ?>

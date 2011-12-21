@@ -471,5 +471,8 @@ AddCharset utf-8 .html .css .js .xml .json .rss
 # php_flag register_globals Off
 
 
-
-
+# Rewrite WordPress wp-admin URL to /admin
+RewriteEngine On
+RewriteCond %{REQUEST_URI} ^/login(/|(\.php))*$ [OR]
+RewriteCond %{REQUEST_URI} ^/admin(/|(\.php))*$
+RewriteRule .* /wp-admin/index.php [NC,L]
