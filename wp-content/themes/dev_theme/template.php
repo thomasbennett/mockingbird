@@ -24,7 +24,6 @@
 </head>
 
 <body>
-<<<<<<< HEAD
   <div id="container">
     <header>
       <a href="/"><h1 id="logo"><?php bloginfo('name'); ?></h1></a>
@@ -35,66 +34,19 @@
 
     <div id="content">
       <?php echo $content ?>
+      <div class="clear"></div>
     </div>
 
     <aside>
       <?php get_sidebar(); ?>
     </aside>
+
     <div class="clear"></div>
   </div>
 
   <footer>
     <?php get_footer() ?>
   </footer>
-=======
-    <div id="container">
-        <header>
-            <a href="/"><h1 id="logo"><?php bloginfo('name'); ?></h1></a>
-            <div class="nav-hover"></div>
-            <nav class="right">
-                <a id="what-we-do" class="nav-link" href="/what-we-do">What We Do</a>
-                <a id="about-us" class="nav-link" href="/information">Information</a>
-                <a id="contact" class="nav-link" href="/contact">Contact</a>
-                <a id="latest-updates" class="nav-link" href="/latest-news">Latest News</a>
-            </nav>
-        </header>
-
-        <?php if(isset($pageTitle)): ?>
-          <aside>
-            <?php get_sidebar(); ?>
-          </aside>
-        <?php endif; ?>
-
-        <div id="content">
-            <?php echo $content ?>
-        </div>
-    </div>
-
-    <footer>
-        <?php get_footer() ?>
-        <div class="city"></div>
-    </footer>
-
-    <?php if(is_home()): ?>
-        <style>#content { margin-bottom: 0 !important }</style>
-        <script src="http://twitterjs.googlecode.com/svn/trunk/src/twitter.min.js"></script>
-        <script>
-            getTwitters('twitter', { 
-                id: 'MockingBMusic', 
-                count: 1, 
-                enableLinks: true, 
-                ignoreReplies: true, 
-                clearContents: false,
-                template: '<span><a href="http://twitter.com/%user_screen_name%/statuses/%id_str%/">%text%</a></span><span class="twt-time">%time%</span>'
-            });
-        </script>
-        <script type="text/javascript" src="<?php bloginfo('template_directory'); ?>/js/cycle.js"></script>
-        <script type="text/javascript" src="<?php bloginfo('template_directory'); ?>/js/cycle-init.js"></script>
-    <?php endif; ?>        
-
-    <script src="<?php bloginfo('template_directory') ?>/js/plugins.js"></script>
-    <script src="<?php bloginfo('template_directory') ?>/js/script.js"></script>
->>>>>>> origin/master
 
   <script src="<?php bloginfo('template_directory') ?>/js/plugins.js"></script>
   <script src="<?php bloginfo('template_directory') ?>/js/script.js"></script>
