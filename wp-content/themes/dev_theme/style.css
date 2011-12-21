@@ -49,13 +49,22 @@ a:visited { color: #551a8b; }
 a:hover { color: #06e; }
 a:focus { outline: thin dotted; }
 
+<<<<<<< HEAD
 /* Improve readability when focused and hovered in all browsers: h5bp.com/h */
 a:hover, a:active { outline: 0; }
+=======
+em { font-style: italic; }
+>>>>>>> origin/master
 
 
+<<<<<<< HEAD
 /* =============================================================================
    Typography
    ========================================================================== */
+=======
+body { font:13px/1.231 serif; *font-size:small; } /* Hack retained to preserve specificity */
+select, input, textarea, button { font:99% sans-serif; }
+>>>>>>> origin/master
 
 abbr[title] { border-bottom: 1px dotted; }
 
@@ -67,9 +76,17 @@ dfn { font-style: italic; }
 
 hr { display: block; height: 1px; border: 0; border-top: 1px solid #ccc; margin: 1em 0; padding: 0; }
 
+<<<<<<< HEAD
 ins { background: #ff9; color: #000; text-decoration: none; }
 
 mark { background: #ff0; color: #000; font-style: italic; font-weight: bold; }
+=======
+ol { list-style-type: decimal; }
+ul { list-style-type: square; }
+
+/* Remove margins for navigation lists */
+nav ul, nav li, footer ul, footer li { margin: 0; list-style:none; list-style-image: none; }
+>>>>>>> origin/master
 
 /* Redeclare monospace font family: h5bp.com/j */
 pre, code, kbd, samp { font-family: monospace, monospace; _font-family: 'courier new', monospace; font-size: 1em; }
@@ -114,6 +131,14 @@ img { border: 0; -ms-interpolation-mode: bicubic; vertical-align: middle; }
 
 svg:not(:root) { overflow: hidden; }
 
+<<<<<<< HEAD
+=======
+/* These selection declarations have to be separate
+   No text-shadow: twitter.com/miketaylr/status/12228805301
+   Also: hot pink! */
+::-moz-selection { background: #FF5E99; color:#fff; text-shadow: none; }
+::selection { background:#FF5E99; color:#fff; text-shadow: none; }
+>>>>>>> origin/master
 
 /* =============================================================================
    Figures
@@ -137,6 +162,7 @@ label { cursor: pointer; }
  * 2. Correct alignment displayed oddly in IE6/7 
  */
 
+<<<<<<< HEAD
 legend { border: 0; *margin-left: -7px; padding: 0; }
 
 /*
@@ -151,6 +177,36 @@ button, input, select, textarea { font-size: 100%; margin: 0; vertical-align: ba
  * 1. Define line-height as normal to match FF3/4 (set using !important in the UA stylesheet)
  * 2. Correct inner spacing displayed oddly in IE6/7
  */
+=======
+@font-face {
+    font-family: 'CherylHand';
+    src: url('fonts/cheryl_hand-webfont.eot');
+    src: url('fonts/cheryl_hand-webfont.eot?#iefix') format('embedded-opentype'),
+         url('fonts/cheryl_hand-webfont.woff') format('woff'),
+         url('fonts/cheryl_hand-webfont.ttf') format('truetype'),
+         url('fonts/cheryl_hand-webfont.svg#CherylHand') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+select, input, textarea  { color: #999; background: #ddd; border: 1px solid #999; }
+label { font-size: 14px; }
+.required { color: #c00; }
+
+/* Headers (h1, h2, etc) have no default font-size or margin; define those yourself */
+h1, h2, h3, h4, h5, h6 { font-weight: normal; font-family: "CherylHand", "Apple Chancery", "Zapf Chancery", "Monotype Corsiva", Georgia, cursive; }
+h1 { color: #ddd; font-family: 'Helvetica Neue', 'Arial', Helvetica, sans-serif; font-size: 2em; text-transform: uppercase; text-shadow: 1px 1px 1px #333; }
+h1 a { color: inherit; font-family: inherit; text-decoration: inherit; }
+h2 { font-size: 3em; margin-bottom: 10px; text-shadow: 1px 1px 1px #333; }
+h3 { font-family: Georgia, serif; font-size: 1.5em; margin-top: 20px; margin-bottom: 5px; text-shadow: 1px 1px 1px #333; }
+
+a, a:active { color: #57a4b1; font-family: Georgia, serif; }
+a:hover { color: #036; }
+
+p { font-size: 15px; line-height: 1.6em; margin-bottom: 15px; }
+ul { margin-bottom: 15px; }
+ul li { font-size: 15px; line-height: 1.6; margin-left: 1.2em; }
+>>>>>>> origin/master
 
 button, input { line-height: normal; *overflow: visible; }
 
@@ -165,6 +221,7 @@ table button, table input { *overflow: auto; }
  * 2. Allow styling of clickable form elements in iOS
  */
 
+<<<<<<< HEAD
 button, input[type="button"], input[type="reset"], input[type="submit"] { cursor: pointer; -webkit-appearance: button; }
 
 /*
@@ -225,6 +282,79 @@ body { background: #ccc; }
   min-height: 600px;
   width: 920px;
 }
+=======
+/* Template */
+body { background: #222 url('images/background.jpg') repeat; color: #ddd; font-family: Georgia, serif; }
+
+h1#logo { background: url('images/logo.png') no-repeat; float: left; height: 87px; margin-top: 15px; overflow: hidden; text-indent: -9999px; width: 537px; }
+
+header { height: 120px; position: relative; }
+
+nav { height: 30px; margin-top: 60px; overflow: hidden; }
+nav a.nav-link { display: block; float: left; height: 60px; margin-left: 15px; text-indent: -9999px; width: 33px; }
+nav a#what-we-do { background: url('images/what-we-do.png') no-repeat; }
+nav a#about-us { background: url('images/about-us.png') no-repeat; margin-top: 1px; }
+nav a#contact { background: url('images/contact.png') no-repeat;  }
+nav a#latest-updates { background: url('images/latest-news.png') no-repeat; }
+.nav-hover { color: #ddd; display: none; font-family: "CherylHand", "Apple Chancery", "Zapf Chancery", "Monotype Corsiva", Georgia, cursive; font-size: 24px; text-shadow: 1px 1px 1px #444; position: absolute; right: 40px; top: 20px;}
+
+form#global-search input { float: left; font-style: italic; margin-top: 15px; }
+input#search { background: url('images/search.png') no-repeat; border: 0; height: 35px; padding-left: 10px; padding-right: 33px; margin-bottom: 30px; width: 166px; }
+input.search-submit { background: none; border: 0; font-size: 0; height: 30px; margin-left: -46px; text-indent: -9999px; width: 40px; }
+
+div#container { margin: 0 auto; width: 780px }
+div#content { margin-bottom: 100px; }
+
+footer { background: url('images/footer.png') repeat-x; clear: both; height: 327px; position: relative; width: 100%; }
+footer ul { float: left; margin-right: 40px; margin-top: 60px;}
+footer ul.last { margin-right: 0; }
+footer ul li { margin-left: 0; }
+footer li a { color: #bbb; font-size: 15px; line-height: 1.4em; text-decoration: none; }
+footer li a.footer-link { color: #ddd; text-transform: uppercase; }
+a.book-them { background: url('images/book-them.png') no-repeat left top; display: block; height: 182px; margin-top: -60px; position: absolute; overflow: hidden; text-indent: -9999px; right: 0; width: 186px; }
+a.book-them:hover { background-position: left bottom; }
+.city { background: url('images/city.png') repeat-x; bottom: 0; height: 132px; position: absolute; width: 100%;}
+
+/* Home */
+
+div#slideshow { height: 264px; width: 780px; overflow: hidden;}
+div#slideshow section { position: relative; -webkit-border-radius: 10px; -moz-border-radius: 10px; border-radius: 10px; height: 264px; width: 780px; }
+div#slideshow section h2 p { color: #4b595c; font-family: Georgia, sans-serif; font-size: 34px; position: absolute; right: 90px; top: 56px; text-align: center; text-shadow: 2px 2px 2px #ddd; width: 300px; }
+section.one { background: url('images/slide1.jpg') no-repeat; }
+section.two { background: url('images/slide2.jpg') no-repeat; }
+section.three { background: url('images/slide3.jpg') no-repeat; }
+section#twitter { background: url('images/twitter-bg.png') no-repeat; height: 58px; margin: 40px 0 20px; position: relative; width: 422px; }
+section#twitter img { margin: 10px 0 0 10px }
+section#twitter span { float: left; margin-left: 10px; margin-top: 10px; width: 365px; }
+section#twitter li { list-style: none; }
+section#twitter span a { color: #fff; display: block; font-size: 12px; font-style: italic; line-height: 1.6em; text-decoration: none; }
+section#twitter span.twt-time { color: #86b6c2; font-style: italic; float: right !important; font-size: 14px; position: absolute; right: 15px; bottom: 10px; width: auto; }
+
+/* Latest News */
+#blog-outer { background: url('images/blog-bg2.png') repeat; float: right; margin-top: 15px; margin-bottom: 100px; padding: 10px; width: 530px;}
+#blog { background: url('images/blogbg.jpg') repeat; padding: 20px; }
+#blog p { color: #ccc; line-height: 1.4em; }
+.read-more { background: url('images/read-more.png') no-repeat 7px 12px; color: #5cadbb; display: block; font-size: .9em; height: 16px; margin-top: 15px;  width: 451px; text-decoration: none; text-align: center; }
+div.divider { background: url('images/double-bar.png') repeat-x; clear: both; height: 4px; margin: 20px 0; }
+div.blog-divider { background: url('images/blog-divider.png') repeat-x; clear: both; height: 4px; margin: 10px 0;}
+time { color: #333; display: block; font-family: 'Helvetica Neue', 'Arial', Helvetica, sans-serif; font-size: .9em; margin-bottom: 10px; text-transform: uppercase; }
+aside { float: left; width: 205px; }
+#socials li { margin-right: 20px; }
+.post-thumbnail img { border: 2px solid #999; height: 235px; width: 448px; }
+p img { margin-top: 15px !important; /* compensates for WP automatic P tags on images */ }
+
+/* Contact */
+.wpcf7-form input { padding: 5px; width: 200px; }
+textarea { height: 80px; }
+.wpcf7-submit { background: #333; border: 1px solid #666; color: #ddd; font-family: 'CherylHand', sans-serif;  font-size: 25px; padding: 0px !important; width: 80px !important; }
+
+/* Information */
+.hover-title { height: 240px; position: relative; width: 340px; }
+.hover-text { background: #000; height: 245px; opacity: 0;  left: -5px; position: absolute; top: 15px; width: 350px; }
+.hover-text:hover { opacity: .7; }
+.hover-text span { display: block; font-family: "CherylHand", "Apple Chancery", "Zapf Chancery", "Monotype Corsiva", Georgia, cursive; font-size: 4em; margin-top: 90px; text-align: center; }
+#weddings-events a { color: #ddd; text-decoration: none; }
+>>>>>>> origin/master
 
 footer {
   border-top: 1px solid #999;
@@ -264,6 +394,7 @@ footer {
 .clearfix:after { clear: both; }
 .clearfix { zoom: 1; }
 
+<<<<<<< HEAD
 /* ==|== media queries ======================================================
    PLACEHOLDER Media Queries for Responsive Design.
    These override the primary ('mobile first') styles
@@ -272,6 +403,23 @@ footer {
 
 @media only screen and (min-width: 480px) {
   /* Style adjustments for viewports 480px and over go here */
+=======
+.left { float: left; }
+.right { float: right; }
+.center { margin: 0 auto; position: relative; width: 780px; }
+.alignleft { border: 2px solid #666; float: left; margin: 0 45px 15px 0; }
+.alignright { border: 2px solid #666; float: right; margin: 0 0 15px 45px; }
+.inline li { display: inline-block; float: left; list-style: none; margin-left: 0; }
+
+/**
+ * Media queries for responsive design.
+ *
+ * These follow after primary styles so they will successfully override.
+ */
+
+@media all and (orientation:portrait) {
+  /* Style adjustments for portrait mode goes here */
+>>>>>>> origin/master
 
 }
 

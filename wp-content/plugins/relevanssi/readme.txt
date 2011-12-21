@@ -3,8 +3,13 @@ Contributors: msaari
 Donate link: http://www.relevanssi.com/buy-premium/
 Tags: search, relevance, better search
 Requires at least: 2.5
+<<<<<<< HEAD
 Tested up to: 3.2.1
 Stable tag: 2.9.12
+=======
+Tested up to: 3.1.3
+Stable tag: 2.9
+>>>>>>> origin/master
 
 Relevanssi replaces the default search with a partial-match search that sorts results by relevance. It also indexes comments and shortcode content.
 
@@ -384,6 +389,7 @@ removing those words helps to make the index smaller and searching faster.
 
 == Changelog ==
 
+<<<<<<< HEAD
 = 2.9.12 =
 * Scheduled cache truncate wasn't scheduled properly. It is now.
 * Added support for 'author' query variable.
@@ -448,6 +454,8 @@ removing those words helps to make the index smaller and searching faster.
 * Fixed a bug that caused wrong $post object to be set in indexing.
 * Added a new hook `relevanssi_excerpt_content`; see [Knowledge Base](http://www.relevanssi.com/category/knowledge-base/) for details.
 
+=======
+>>>>>>> origin/master
 = 2.9 =
 * Fixed a bug that caused Cyrillic searches in the log to get corrupted.
 * Punctuation removal function is now triggered with a filter call and can thus be replaced.

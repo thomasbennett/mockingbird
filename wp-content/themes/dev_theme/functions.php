@@ -9,14 +9,18 @@ add_theme_support('post-thumbnails');
 
 // Defines the Excerpt
 function new_excerpt_length($length) {
-	return 100;
+	return 40;
 }
 add_filter('excerpt_length', 'new_excerpt_length');
 
 // Gives the excerpt a Read More link
 function new_excerpt_more($more) {
     global $post;
+<<<<<<< HEAD
 	return '... <a href="'. get_permalink($post->ID) . '">Read More</a>';
+=======
+	return '<a class="read-more" href="'. get_permalink($post->ID) . '">Read More </a>';
+>>>>>>> origin/master
 }
 add_filter('excerpt_more', 'new_excerpt_more');
 

@@ -3,7 +3,11 @@
 Plugin Name: Relevanssi
 Plugin URI: http://www.relevanssi.com/
 Description: This plugin replaces WordPress search with a relevance-sorting search.
+<<<<<<< HEAD
 Version: 2.9.12
+=======
+Version: 2.9
+>>>>>>> origin/master
 Author: Mikko Saari
 Author URI: http://www.mikkosaari.fi/
 */
@@ -52,7 +56,10 @@ add_action('transition_post_status', 'relevanssi_update_child_posts',99,3);
 add_action('init', 'relevanssi_init');
 add_filter('relevanssi_hits_filter', 'relevanssi_wpml_filter');
 add_filter('relevanssi_remove_punctuation', 'relevanssi_remove_punct');
+<<<<<<< HEAD
 add_filter('relevanssi_post_ok', 'relevanssi_default_post_ok');
+=======
+>>>>>>> origin/master
 
 $plugin_dir = basename(dirname(__FILE__));
 load_plugin_textdomain( 'relevanssi', 'wp-content/plugins/' . $plugin_dir, $plugin_dir);
@@ -91,8 +98,13 @@ function relevanssi_menu() {
 		'relevanssi_options'
 	);
 	add_dashboard_page(
+<<<<<<< HEAD
 		__('User searches', 'relevanssi'),
 		__('User searches', 'relevanssi'),
+=======
+		'User searches',
+		'User searches',
+>>>>>>> origin/master
 		'edit_pages',
 		__FILE__,
 		'relevanssi_search_stats'
@@ -318,7 +330,10 @@ function relevanssi_install() {
 	add_option('relevanssi_wpml_only_current', 'on');
 	add_option('relevanssi_word_boundaries', 'on');
 	add_option('relevanssi_hidesponsor', 'false');
+<<<<<<< HEAD
 	add_option('relevanssi_default_orderby', 'relevance');
+=======
+>>>>>>> origin/master
 	
 	require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
 
@@ -444,7 +459,10 @@ function relevanssi_uninstall() {
 	delete_option('relevanssi_wpml_only_current');
 	delete_option('relevanssi_word_boundaries');
 	delete_option('relevanssi_hidesponsor');
+<<<<<<< HEAD
 	delete_option('relevanssi_default_orderby');
+=======
+>>>>>>> origin/master
 	
 	wp_clear_scheduled_hook('relevanssi_truncate_cache');
 
@@ -645,12 +663,15 @@ function relevanssi_do_query(&$query) {
 	if (isset($query->query_vars["post_types"])) {
 		$post_type = $query->query_vars["post_types"];
 	}
+<<<<<<< HEAD
 
 	$author = false;
 	if (isset($query->query_vars["author"])) {
 		$author = $query->query_vars["author"];
 	}
 
+=======
+>>>>>>> origin/master
 	
 	$expids = get_option("relevanssi_exclude_posts");
 
@@ -1041,6 +1062,7 @@ function relevanssi_search($q, $cat = NULL, $excat = NULL, $expost = NULL, $post
 		$excat .= $excat_temp;
 	}
 
+<<<<<<< HEAD
 	if ($author) {
 		$author = esc_sql($author);
 	}
@@ -1061,11 +1083,17 @@ function relevanssi_search($q, $cat = NULL, $excat = NULL, $expost = NULL, $post
 		$tag = implode(",", $inc_term_tax_ids);
 	}
 
+=======
+>>>>>>> origin/master
 	if (!empty($taxonomy)) {
 		$term_tax_id = null;
 		$term_tax_id = $wpdb->get_var($wpdb->prepare("SELECT term_taxonomy_id FROM $wpdb->terms
 			JOIN $wpdb->term_taxonomy USING(`term_id`)
+<<<<<<< HEAD
 				WHERE `slug` LIKE %s AND `taxonomy` LIKE %s", "%$taxonomy_term%", $taxonomy));
+=======
+				WHERE `slug` LIKE %s AND `taxonomy` LIKE %s", $taxonomy_term, $taxonomy));
+>>>>>>> origin/master
 		if ($term_tax_id) {
 			$taxonomy = $term_tax_id;
 		} else {
@@ -2504,7 +2532,11 @@ add_shortcode('search', 'relevanssi_shortcode');
 function relevanssi_options() {
 	$options_txt = __('Relevanssi Search Options', 'relevanssi');
 
+<<<<<<< HEAD
 	printf("<div class='wrap'><?php screen_icon(); ?><h2>%s</h2>", $options_txt);
+=======
+	printf("<div class='wrap'><h2>%s</h2>", $options_txt);
+>>>>>>> origin/master
 	if (!empty($_REQUEST)) {
 		if (isset($_REQUEST['hidesponsor'])) {
 			update_option('relevanssi_hidesponsor', 'true');
@@ -3143,7 +3175,19 @@ function relevanssi_options_form() {
 
 	$word_boundaries = ('on' == get_option('relevanssi_word_boundaries') ? 'checked="checked"' : ''); 
 
+	$hidesponsor = get_option('relevanssi_hidesponsor', 'false');
+	if ($hidesponsor == 'false') {
 ?>
+<<<<<<< HEAD
+=======
+<script type="text/javascript">
+var psHost = (("https:" == document.location.protocol) ? "https://" : "http://");
+document.write(unescape("%3Cscript src='" + psHost + "pluginsponsors.com/direct/spsn/display.php?client=relevanssi&spot=' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<p style="float: right; font-size: 75%; margin: -0.75em 0 2em 0;"><a href="http://pluginsponsors.com/privacy.html">Privacy policy</a> |
+<a href="?page=relevanssi/relevanssi.php&hidesponsor=true">Hide these messages</a></p>
+<?php } ?>
+>>>>>>> origin/master
 	
 <div class='postbox-container' style='width:70%;'>
 	<form method='post'>
@@ -3566,6 +3610,7 @@ function relevanssi_show_stopwords() {
 	
 ?>
 <p><input type="submit" name="removeallstopwords" value="<?php _e('Remove all stopwords', 'relevanssi'); ?>" class='button' /></p>
+<<<<<<< HEAD
 <?php
 
 	$exportlist = implode(", ", $exportlist);
@@ -3574,6 +3619,8 @@ function relevanssi_show_stopwords() {
 <p><?php _e("Here's a list of stopwords you can use to export the stopwords to another blog.", "relevanssi"); ?></p>
 
 <textarea name="stopwords" rows="2" cols="40"><?php echo $exportlist; ?></textarea>
+=======
+>>>>>>> origin/master
 <?php
 
 }
@@ -3643,7 +3690,11 @@ comparison</a> and <a href="http://www.relevanssi.com/buy-premium/?utm_source=pl
 			<p>For Relevanssi support, see:</p>
 			
 			<p>- <a href="http://wordpress.org/tags/relevanssi?forum_id=10">WordPress.org forum</a><br />
+<<<<<<< HEAD
 			- <a href="http://www.relevanssi.com/category/knowledge-base/?utm_source=plugin&utm_medium=link&utm_campaign=kb">Knowledge base</a></p>
+=======
+			- <a href="http://www.relevanssi.com/category/knowledge-base/">Knowledge base</a></p>
+>>>>>>> origin/master
 			</div>
 		</div>
 	</div>
