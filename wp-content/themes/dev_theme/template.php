@@ -12,7 +12,7 @@
 
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   <meta name="author" content="Thomas Bennett for iostudio" />
-  <meta name="viewport" content="width=device-width, intial-scale=1, maximum-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   <link rel="stylesheet" type="text/css" href="<?php bloginfo('template_directory') ?>/style.css" />
 

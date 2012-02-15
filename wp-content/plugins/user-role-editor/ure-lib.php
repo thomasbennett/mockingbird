@@ -82,7 +82,7 @@ function ure_is_admin( $user_id = false ) {
     if (empty($current_user) && function_exists('get_currentuserinfo')) {
       get_currentuserinfo();
     }
-		$user_id = ! empty($current_user) ? $current_user->id : 0;
+		$user_id = ! empty($current_user) ? $current_user->ID : 0;
 	}
 
 	if ( ! $user_id )
@@ -138,11 +138,13 @@ function ure_getUserRoles() {
   } 
   
   $ure_roles = $wp_roles->roles;
-  asort($ure_roles);
+  if (is_array($ure_roles)) {
+    asort($ure_roles);
+  }
   
   return $ure_roles;
 }
-// end of getUserRoles()
+// end of ure_getUserRoles()
 
 
 // restores User Roles from the backup record
@@ -177,7 +179,7 @@ function restoreUserRoles() {
     $reload_link = remove_query_arg('action', $reload_link);
     $reload_link = add_query_arg('action', 'roles_restore_note', $reload_link);
 ?>    
-<script language="javascript" type="text/javascript" >
+<script type="text/javascript" >
   document.location = '<?php echo $reload_link; ?>';
 </script>  
 <?php    
@@ -296,8 +298,9 @@ function ure_newRoleCreate(&$ure_currentRole) {
   if (isset($_GET['user_role']) && $_GET['user_role']) {
     $user_role = utf8_decode(urldecode($_GET['user_role']));
     // sanitize user input for security
-    if (!preg_match('/^[A-Za-z_][A-Za-z0-9_]*/', $user_role)) {
-      return 'Error! '.__('Error: Role name must contain latin characters and digits only!', 'ure');;
+    $valid_name = preg_match('/^[A-Za-z_][A-Za-z0-9_]*/', $user_role, $match);
+    if (!$valid_name || ($valid_name && ($match[0]!=$user_role))) { // some non-alphanumeric charactes found!
+      return __('Error: Role name must contain latin characters and digits only!', 'ure');
     }  
     if ($user_role) {
       if (!isset($wp_roles)) {
@@ -810,11 +813,15 @@ function capabilityHelpLink($capability) {
   switch ($capability) {
     case 'activate_plugins':
       $url = 'http://www.shinephp.com/activate_plugins-wordpress-capability/';
-      $post_name = 'activate_plugins WordPress capability';
+      $post_name = 'activate_plugins WordPress user capability';
       break;
     case 'edit_dashboard':
       $url = 'http://www.shinephp.com/edit_dashboard-wordpress-capability/';
-      $post_name = 'http://www.shinephp.com/edit_dashboard-wordpress-capability/';
+      $post_name = 'edit_dashboard WordPress user capability';
+      break;    
+    case 'moderate_comments':
+      $url = 'http://www.shinephp.com/moderate_comments-wordpress-user-capability/';
+      $post_name = 'moderate_comments WordPress user capability';
       break;    
     default:
       $url = '';
@@ -822,7 +829,7 @@ function capabilityHelpLink($capability) {
   }
   // end of switch
   if (!empty($url)) {
-    $link = '<a href="'.$url.'" title="'.$post_name.'" target="new"><img src="'.URE_PLUGIN_URL.'/images/help.png" title="'.__('Help','ure').'" alt="'.__('Help','ure').'" /></a>';
+    $link = '<a href="'.$url.'" title="read about '.$capability.' user capability" target="new"><img src="'.URE_PLUGIN_URL.'/images/help.png" alt="'.__('Help','ure').'" /></a>';
   } else {
     $link = '';
   }
